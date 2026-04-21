@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>Mohamed Hamdy — Brand Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Condensed:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles_v2.css"/>
+</head>
+<body>
+
+<div class="app">
+  <!-- TOP PILL BAR -->
+  <div class="topbar">
+    <div class="brand-chip" id="brand-chip">
+      <span class="logo" id="brand-logo">H</span>
+      <span class="wm" id="brand-wm">Hamdy</span>
+    </div>
+
+    <nav class="nav-pill" id="nav-pill">
+      <button class="tab active" data-tab="dashboard">Dashboard</button>
+      <button class="tab" data-tab="accent">Accent</button>
+      <button class="tab" data-tab="carousel">Carousel</button>
+      <button class="tab" data-tab="post">Post</button>
+      <button class="tab" data-tab="story">Story</button>
+      <button class="tab" data-tab="hashtags">Hashtags</button>
+      <button class="tab" data-tab="planner">Planner</button>
+      <button class="tab" data-tab="templates">Templates</button>
+      <button class="tab" data-tab="archive">Archive</button>
+    </nav>
+
+    <div class="topbar-actions">
+      <label class="icon-btn" title="Upload logo" style="cursor:pointer">
+        <input type="file" id="logo-upload" accept="image/*" hidden/>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15V3M7 8l5-5 5 5M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>
+      </label>
+      <button class="icon-btn" id="theme-toggle" title="Toggle theme">
+        <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      </button>
+      <button class="icon-btn primary" id="save-all" title="Save everything">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ========== DASHBOARD ========== -->
+  <section class="tab-panel active" data-panel="dashboard">
+    <div class="page-h">
+      <div>
+        <div class="crumbs">Brand Studio / Overview</div>
+        <h1>Welcome, <span id="welcome-name">Mohamed</span></h1>
+      </div>
+      <div class="stat-row">
+        <div class="stat-pill on"><span class="n">7</span><span class="l">Pillars</span></div>
+        <div class="stat-pill dark"><span class="n">55</span><span class="l">Topics</span></div>
+        <div class="stat-pill"><span class="n">7</span><span class="l">Accents</span></div>
+        <div class="stat-pill"><span class="n">12</span><span class="l">Templates</span></div>
+      </div>
+    </div>
+
+    <div class="grid grid-main" style="gap:18px">
+      <!-- LEFT: Logo + voice -->
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <div class="card tall">
+          <div class="kicker">Logo · Current</div>
+          <div class="logo-preview light" id="logo-light"></div>
+          <div class="logo-preview dark" style="margin-top:10px" id="logo-dark"></div>
+          <div style="display:flex;gap:6px;margin-top:14px;flex-wrap:wrap">
+            <button class="btn btn-primary" id="logo-edit-btn">Change logo</button>
+            <button class="btn" id="logo-reset-btn">Reset</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Voice · Do</h3>
+          <ul class="voice-list" id="voice-do"></ul>
+        </div>
+        <div class="card">
+          <h3>Voice · Don't</h3>
+          <ul class="voice-list dont" id="voice-dont"></ul>
+        </div>
+      </div>
+
+      <!-- CENTER -->
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <div class="card tall accent-card">
+          <div class="kicker" style="color:#151515">This week's focus</div>
+          <h3 style="font-size:28px;margin-top:10px" id="focus-title">Urban Heat Crisis · TM59 failures</h3>
+          <p style="margin:8px 0 0;max-width:520px;line-height:1.5;opacity:.85" id="focus-desc">Pillar P1 · 40% of Leeds flats fail TM59 under 2050 weather. Carousel Monday, LinkedIn explainer Wednesday.</p>
+          <div style="display:flex;gap:8px;margin-top:16px;flex-wrap:wrap">
+            <button class="btn btn-primary" data-go-tab="carousel">Open carousel editor</button>
+            <button class="btn" data-go-tab="planner">View planner</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Color system</h3>
+          <p class="sub">Click a swatch to copy the hex.</p>
+          <div class="swatch-grid" id="swatch-grid"></div>
+        </div>
+
+        <div class="card">
+          <h3>Typography</h3>
+          <div id="type-samples"></div>
+        </div>
+
+        <div class="card">
+          <h3>Content pillars</h3>
+          <table class="std" id="pillar-table"><thead><tr><th>Pillar</th><th>Theme</th><th>Platforms</th><th>Cadence</th></tr></thead><tbody></tbody></table>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="side-right" style="display:flex;flex-direction:column;gap:18px">
+        <div class="card">
+          <h3>Weekly schedule</h3>
+          <table class="std" id="schedule-table"><thead><tr><th>Day</th><th>Format</th><th>Platform</th></tr></thead><tbody></tbody></table>
+        </div>
+        <div class="card">
+          <h3>Dimensions</h3>
+          <table class="std" id="dim-table"><thead><tr><th>Format</th><th>Size</th><th>Notes</th></tr></thead><tbody></tbody></table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ACCENT ========== -->
+  <section class="tab-panel" data-panel="accent">
+    <div class="page-h">
+      <div><div class="crumbs">Brand Studio / Color</div><h1>Accent picker</h1></div>
+      <div class="stat-row">
+        <div class="stat-pill on"><span class="n" id="acc-current">AC1</span><span class="l" id="acc-current-name">Burnt Orange</span></div>
+        <div class="stat-pill dark"><span class="n" id="acc-used-count">0</span><span class="l">used</span></div>
+        <button class="pill-btn" id="acc-clear-used">Clear rotation</button>
+      </div>
+    </div>
+    <div class="accent-grid" id="accent-grid"></div>
+  </section>
+
+  <!-- ========== CAROUSEL / POST / STORY ========== -->
+  <section class="tab-panel" data-panel="carousel">
+    <div class="page-h">
+      <div><div class="crumbs">Brand Studio / Editor</div><h1>Carousel</h1></div>
+      <div class="stat-row">
+        <span class="mode-chip"><span class="dot"></span>1080 × 1080 · 10 slides max</span>
+        <button class="pill-btn" data-ed-act="export-png" data-ed="carousel">Export PNGs</button>
+        <button class="pill-btn primary" data-ed-act="save" data-ed="carousel">Save to archive</button>
+      </div>
+    </div>
+    <div class="editor-shell" id="editor-carousel"></div>
+  </section>
+  <section class="tab-panel" data-panel="post">
+    <div class="page-h">
+      <div><div class="crumbs">Brand Studio / Editor</div><h1>Single post</h1></div>
+      <div class="stat-row">
+        <span class="mode-chip"><span class="dot"></span>1080 × 1080</span>
+        <button class="pill-btn" data-ed-act="export-png" data-ed="post">Export PNG</button>
+        <button class="pill-btn primary" data-ed-act="save" data-ed="post">Save to archive</button>
+      </div>
+    </div>
+    <div class="editor-shell" id="editor-post"></div>
+  </section>
+  <section class="tab-panel" data-panel="story">
+    <div class="page-h">
+      <div><div class="crumbs">Brand Studio / Editor</div><h1>Story</h1></div>
+      <div class="stat-row">
+        <span class="mode-chip"><span class="dot"></span>1080 × 1920</span>
+        <button class="pill-btn" data-ed-act="export-png" data-ed="story">Export PNG</button>
+        <button class="pill-btn primary" data-ed-act="save" data-ed="story">Save to archive</button>
+      </div>
+    </div>
+    <div class="editor-shell" id="editor-story"></div>
+  </section>
+
+  <!-- ========== HASHTAGS ========== -->
+  <section class="tab-panel" data-panel="hashtags">
+    <div class="page-h">
+      <div><div class="crumbs">Brand Studio / Growth</div><h1>Hashtag bank</h1></div>
+      <input class="search-input" id="tag-search" placeholder="Search hashtags…" style="max-width:340px"/>
+    </div>
+    <div class="grid" style="grid-template-columns:1fr 1fr;gap:18px">
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px">
+          <div><div class="kicker">Instagram</div><h3 style="margin:0">25 tags · copy all</h3></div>
+          <button class="btn btn-primary" id="copy-ig">Copy set</button>
+        </div>
+        <div id="tags-ig"></div>
+      </div>
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px">
+          <div><div class="kicker">LinkedIn</div><h3 style="margin:0">12 tags · copy all</h3></div>
+          <button class="btn btn-primary" id="copy-li">Copy set</button>
+        </div>
+        <div id="tags-li"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PLANNER ========== -->
+  <section class="tab-panel" data-panel="planner">
+    <div class="page-h">
+      <div><div class="crumbs">Brand Studio / Schedule</div><h1>Weekly planner</h1></div>
+      <div class="stat-row">
+        <button class="pill-btn" id="planner-md">Export checklist</button>
+        <button class="pill-btn" id="planner-json">Export JSON</button>
+        <button class="pill-btn primary" id="planner-archive">Archive week</button>
+      </div>
+    </div>
+
+    <div class="planner-toolbar">
+      <div id="week-tabs" style="display:flex;gap:4px;flex-wrap:wrap;flex:1"></div>
+      <button class="pill-btn" id="week-new">+ New week</button>
+      <button class="icon-btn" id="week-delete" title="Delete this week">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/></svg>
+      </button>
+    </div>
+
+    <div class="week-theme-card">
+      <div>
+        <div class="label">Week label</div>
+        <input class="select" id="week-label" placeholder="e.g. Heatwave campaign" style="margin-bottom:10px"/>
+        <div class="label">Date range</div>
+        <div class="hstack" style="gap:8px">
+          <input type="date" class="select" id="week-start"/>
+          <span style="color:var(--muted)">→</span>
+          <input type="date" class="select" id="week-end"/>
+        </div>
+      </div>
+      <div>
+        <div class="label">This week's topic / theme</div>
+        <textarea class="note" id="week-topic" placeholder="What are you focused on this week? e.g. 'Overheating research release — build toward LinkedIn long-form on Friday.'"></textarea>
+      </div>
+    </div>
+
+    <div class="week-grid" id="week-grid"></div>
+  </section>
+
+  <!-- ========== TEMPLATES ========== -->
+  <section class="tab-panel" data-panel="templates">
+    <div class="page-h">
+      <div><div class="crumbs">Brand Studio / Library</div><h1>Templates</h1></div>
+    </div>
+    <h3 style="font-family:var(--font-head);margin:8px 0 14px">Carousels</h3>
+    <div class="tpl-grid" id="tpl-carousels"></div>
+    <h3 style="font-family:var(--font-head);margin:24px 0 14px">Single posts</h3>
+    <div class="tpl-grid" id="tpl-posts"></div>
+    <h3 style="font-family:var(--font-head);margin:24px 0 14px">Stories</h3>
+    <div class="tpl-grid" id="tpl-stories"></div>
+  </section>
+
+  <!-- ========== ARCHIVE ========== -->
+  <section class="tab-panel" data-panel="archive">
+    <div class="page-h">
+      <div><div class="crumbs">Brand Studio / History</div><h1>Archive</h1></div>
+      <button class="pill-btn" id="archive-clear">Clear archive</button>
+    </div>
+    <div class="archive-list" id="archive-list"></div>
+  </section>
+</div>
+
+<div class="toast" id="toast">Copied!</div>
+
+<script src="data.js"></script>
+<script src="logo.js"></script>
+<script src="editor_v2.js"></script>
+<script src="tpl.js"></script>
+<script src="app_v3.js"></script>
+</body>
+</html>
